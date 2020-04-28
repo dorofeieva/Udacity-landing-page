@@ -13,10 +13,41 @@
  * 
 */
 
+
+
 /**
  * Define Global Variables
  * 
 */
+const allsections = document.querySelectorAll('section');
+
+                    
+
+
+//  data structure can represent all sections for your page, so it might be a good idea to save it to a variable.
+
+// Navigation menu
+
+const navList = document.querySelector('#navbar__list');
+// -- li : use loop to detect all sections and compile into navlist
+
+for (const _section of allsections) {
+    // console.log(_section);
+
+    const navLi = document.createElement('li');
+    const sect_id = _section.getAttribute('id');
+    const sect_title = _section.getAttribute('data-nav');
+    // -- build menu
+    navLi.setAttribute('id', 'nav-'+sect_id);
+    navLi.textContent = sect_title;
+    navList.appendChild(navLi);
+
+}
+
+
+
+
+
 
 
 /**
@@ -34,12 +65,24 @@
 */
 
 // build the nav
+function buildNavMenu() {
+    // console.log('DOM fully loaded and parsed');
 
+
+    
+    // console.log("Navbar is builded");
+}
 
 // Add class 'active' to section when near top of viewport
 
 
 // Scroll to anchor ID using scrollTO event
+
+function scrollTO() {
+    console.log("Scroll to section on link click");
+    // var elmnt = document.getElementById("content");
+    // elmnt.scrollIntoView();
+}
 
 
 /**
@@ -49,6 +92,7 @@
 */
 
 // Build menu 
+document.addEventListener("DOMContentLoaded", buildNavMenu);
 
 // Scroll to section on link click
 
