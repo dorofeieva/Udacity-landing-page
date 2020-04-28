@@ -35,10 +35,14 @@ for (const _section of allsections) {
     // console.log(_section);
 
     const navLi = document.createElement('li');
+    // const nav_a = document.createElement('a');
+    // nav_a.setAttribute('href', '#'+sect_id);
+    // navLi.appendChild(nav_a);
     const sect_id = _section.getAttribute('id');
     const sect_title = _section.getAttribute('data-nav');
     // -- build menu
     navLi.setAttribute('id', 'nav-'+sect_id);
+    navLi.setAttribute('data-anchor', sect_id);
     navLi.textContent = sect_title;
     navList.appendChild(navLi);
 
@@ -78,10 +82,10 @@ function buildNavMenu() {
 
 // Scroll to anchor ID using scrollTO event
 
-function scrollTO() {
-    console.log("Scroll to section on link click");
-    // var elmnt = document.getElementById("content");
-    // elmnt.scrollIntoView();
+function scrollTO(evt) {
+    const idToScroll = evt.target.getAttribute('data-anchor');
+    const elmnt = document.getElementById(idToScroll);
+    elmnt.scrollIntoView({behavior: "smooth"});
 }
 
 
@@ -95,6 +99,8 @@ function scrollTO() {
 document.addEventListener("DOMContentLoaded", buildNavMenu);
 
 // Scroll to section on link click
+
+navList.addEventListener("click", scrollTO);
 
 // Set sections as active
 
