@@ -16,22 +16,37 @@ For specific, detailed instructions, look at the project instructions in the Uda
 
 ## Plan
 
-- Build menu 
-- Scroll to section on link click
-- Set sections as active
+### Main tasks:
+ 
+- Build menu;
+  -- Scroll to section on link click
+- Add functionality to distinguish the section in view;
+  -- Set sections as active
+- Add the functionality to scroll to sections.
+- REFACTOR;
+- Test the performance;
+
+### Suggested tasks:
+ - Add an active state to your navigation items when a section is in the viewport.
+ - Hide fixed navigation bar while not scrolling (it should still be present on page load).
+            Hint: setTimeout can be used to check when the user is no longer scrolling.
+ - Add a scroll to top button on the page that’s only visible when the user scrolls below the fold of    the page.
+ - Update/change the design/content.
+ - Make sections collapsible.
+
 
 func // build the nav
 func // Add class 'active' to section when near top of viewport
 func // Scroll to anchor ID using scrollTO event
 
-# Events: 
+## Events: 
 - on page download build nav list ;
 - onclick nav item jump to section;
 - when near top of viewport add class 'active' to section;
 
 
-# Functions:
-- select all "section"  and add to nav item as <li id="nav_section"></li> with unique id and <a></a> and title inside;
+## Functions:
+- select all "section"  and add to nav item as /li id="nav_section"/ with unique id and     a></a> and title inside;
 - add class "active" to viewed section;
 - add item to nav, wenn new section added;
 
