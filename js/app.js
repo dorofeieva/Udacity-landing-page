@@ -24,7 +24,7 @@ const allsections = document.querySelectorAll('section');
 // Navigation menu
     //Where is the navigation placed
 const navList = document.querySelector('#navbar__list');
-
+const header_nav = document.querySelector(".page__header");
 
 
 
@@ -48,9 +48,6 @@ var sec2 = document.querySelector('#section2');
  * 
 */
 
-let buildNavItem = () => {
-
-}
 // detect if element is in the viewport/closest to the top
 const isInViewport = function (elem) {
     let bounding = elem.getBoundingClientRect();
@@ -78,13 +75,13 @@ const removeCurrentActiveClass = (elem) => {
 // build the nav
 const buildNavMenu = () => {
     //  loop to detect all sections and compile into #navbar__list
-    for (const _section of allsections) {
+    for (const section of allsections) {
         const navLi = document.createElement('li');
         // const nav_a = document.createElement('a');
         // nav_a.setAttribute('href', '#'+sect_id);
         // navLi.appendChild(nav_a);
-        const sect_id = _section.getAttribute('id');
-        const sect_title = _section.getAttribute('data-nav');
+        const sect_id = section.getAttribute('id');
+        const sect_title = section.getAttribute('data-nav');
         navLi.setAttribute('id', 'nav-'+sect_id);
         navLi.setAttribute('data-anchor', sect_id);
         navLi.textContent = sect_title;
@@ -124,7 +121,25 @@ function scrollTO(evt) {
     // console.log('scrollTO func loaded');
 }
 
-
+// Hide fixed navigation bar while not scrolling (it should still be present on page load).
+// Hint: setTimeout can be used to check when the user is no longer scrolling.
+const hideNavMenu = () => {
+    setTimeout(function() { 
+        header_nav.style.visibility = "hidden";
+        // alert("Hello"); 
+    }, 4000);
+}
+const noHideNavMenu = () => {
+    header_nav.style.visibility = "visible";
+    // navList.style.display = "block";
+}
+const appearNavMenu = () => {
+    noHideNavMenu();
+    hideNavMenu();
+    // if(navList.mouseIsOver) {
+    //     navList.style.display = "block";
+    // }
+}
 
 
 
@@ -145,17 +160,8 @@ document.addEventListener("DOMContentLoaded", function() {
  
     // Set sections as active
     window.addEventListener('scroll', setasActive);
-
+    window.addEventListener('scroll', appearNavMenu);
+    window.addEventListener('mouseover', noHideNavMenu);
 
 
 });
-
-
-
-
-
-
-
-
-
-
