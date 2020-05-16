@@ -57,7 +57,7 @@ main {
 
 section {
     position: relative;
-    min-height: 80vh;
+    /* min-height: 80vh; */
 }
 
 
@@ -73,7 +73,10 @@ section {
 .navbar__menu li.your-active-class {
     background: linear-gradient(2deg, rgba(192, 144, 1, 0.64) 0%, rgba(0, 0, 0, 0) 100%);
 } 
-
+.navbar__menu li:hover {
+    background: linear-gradient(2deg, rgba(192, 144, 1, 0.40) 0%, rgba(0, 0, 0, 0) 100%);
+    
+} 
 .navbar__menu li {
     display: inline-block;
     cursor: pointer;
@@ -131,6 +134,7 @@ section {
         padding: 4em;
     }
 }
+
 
 section:nth-of-type(even) .landing__container {
     margin-right: 0;
@@ -203,9 +207,9 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* Section Active Styles */
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
 section.your-active-class {
-    background: rgb(0, 0, 0);
+    background: linear-gradient(2deg, rgba(255, 193, 7, 0.56) 0%, rgba(0, 0, 0, 0) 95%);
     /* background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%); */
-    background: linear-gradient(2deg, rgba(171, 0, 241, 0.78) 0%, rgba(0, 0, 0, 0) 100%);
+    /* background: linear-gradient(2deg, rgba(171, 0, 241, 0.78) 0%, rgba(0, 0, 0, 0) 100%); */
 }
 
 
@@ -232,3 +236,42 @@ section.your-active-class .landing__container::after {
 		           rotate(-360deg);
 	}
 }
+
+.content {
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+    height: auto;
+    /* transform-origin: top;
+    transition: transform .2s ease-out;
+    transform: scaleY(1);  */
+}
+.collapsed {
+    /* max-height: 0; */
+    /* overflow: hidden; */
+    /* transition: max-height 0.2s ease-out; */
+  }
+
+  .btn-collapse:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    font-size: 4em;
+  }
+  section:nth-of-type(even) .landing__container .btn-collapse {
+    float: left;
+  }
+  section h2 {
+      width: 90%; 
+      display: inline;
+  }
+
+  .btn-collapse {
+    float: right;
+    height: 40px;
+    background-color: inherit;
+    border: none;
+  }
+  
+  section .active:after {
+    content: "\2212";
+  }
