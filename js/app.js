@@ -19,7 +19,6 @@
  * Define Global Variables
  * 
 */
-const allsections = document.querySelectorAll('section');
 
 // Navigation menu
     //Where is the navigation placed
@@ -28,10 +27,11 @@ const header_nav = document.querySelector(".page__header");
 
 
 // Detect Viewport
+const allsections = document.querySelectorAll('section');
 
-
-const btnCollapse = document.querySelectorAll(".btn-collapse")
-
+//Buttons
+const btnCollapse = document.querySelectorAll(".btn-collapse");
+const btnScrollUp = document.querySelector('.btn-scrollup');
 
 
 
@@ -50,8 +50,10 @@ const setHeightOfContent = () => {
         content.style.height = content.scrollHeight + "px";
         // console.log('Set Height of content:', content.parentNode.parentNode.getAttribute("id"));
     }
-    console.log('Set Height of content');
+    // console.log('Set Height of content');
 }
+
+
 // detect if element is in the viewport/closest to the top
 const isInViewport = function (elem) {
     let bounding = elem.getBoundingClientRect();
@@ -63,6 +65,7 @@ const isInViewport = function (elem) {
     );
 };
 
+// Remove previous active class of section to make active the one in viewport
 const removeCurrentActiveClass = (elem) => {
     const currentActive = elem.parentNode.getElementsByClassName("your-active-class");
     if (currentActive.length > 0) { 
@@ -77,8 +80,8 @@ const removeCurrentActiveClass = (elem) => {
  * 
 */
 
-// build the nav
-const buildNavMenu = () => {
+// build the navigation bar
+const buildNavbar = () => {
     //  loop to detect all sections and compile into #navbar__list
     for (const section of allsections) {
         const navLi = document.createElement('li');
@@ -89,39 +92,34 @@ const buildNavMenu = () => {
         navLi.textContent = sect_title;
         navList.appendChild(navLi);
     }
-     console.log('buildNavMenu func loaded');
+    //  console.log('buildNavMenu func loaded');
 }
+
 // Hide fixed navigation bar while not scrolling (it should still be present on page load).
 // Hint: setTimeout can be used to check when the user is no longer scrolling.
-const hideNavMenu = () => {
+
+const showNavbar = () => {
+
+// appear navigation bar on scroll event
+    header_nav.style.opacity = "1";
+
+// hide navigation bar while not scrolling with setTimeout
     setTimeout(function() { 
-        header_nav.style.visibility = "hidden";
-        // alert("Hello"); 
-    }, 4000);
-};
-const noHideNavMenu = () => {
-    header_nav.style.visibility = "visible";
-    // navList.style.display = "block";
-};
-const appearNavMenu = () => {
-    noHideNavMenu();
-    hideNavMenu();
-    // if(navList.mouseIsOver) {
-    //     navList.style.display = "block";
-    // }
+       header_nav.style.opacity = "0";
+    }, 2000);
 };
 
-// Add class 'active' to section when near top of viewport 
+// Add class 'active' to section and navigation menu item when near top of viewport 
 
 const setasActive = () => {
-    console.log('setasActive');
+    // console.log('setasActive');
     for (const section_ of allsections) {
-        
         if (isInViewport(section_)) {
             const nav_of_section = navList.querySelector('#nav-'+section_.id);
-            // console.log('setasActive:', section_.getAttribute('id'));
-            // remove previous active class 
+
+            // Remove previous active class of navigation menu item 
             removeCurrentActiveClass(nav_of_section);
+            // Remove previous active class of section
             removeCurrentActiveClass(section_);
             return (
                 nav_of_section.classList.add("your-active-class"),
@@ -138,14 +136,38 @@ function scrollTO(evt) {
     const idToScroll = evt.target.getAttribute('data-anchor');
     const elmnt = document.getElementById(idToScroll);
     elmnt.scrollIntoView({behavior: "smooth"});
-    console.log('scrollTO func loaded');
+    // console.log('scrollTO func loaded');
+}
+// scroll to top on the page on button click,
+const scrollUp = () => window.scrollTo({ top: 0, left: 0 });
+
+// that’s only visible when the user scrolls below the fold of the page.
+const buttonUpAppear = () => {
+
+    const buttonInViewport = () =>  (document.body.scrollTop > (window.innerHeight || document.documentElement.clientHeight)*1.5 || 
+    document.documentElement.scrollTop > (window.innerHeight || document.documentElement.clientHeight)*1.5);
+
+    if (buttonInViewport()) {
+        // opacity here to make slowly 
+        btnScrollUp.style.opacity = '1';
+        // visibility remove button from the flow, otherwise we can accidentally click on button
+        btnScrollUp.style.visibility = 'visible';
+    }
+    else {
+        btnScrollUp.style.opacity = '0';
+        btnScrollUp.style.visibility = 'hidden';
+
+    }
 }
 
+//  Make sections collapsible: Event Listener on click works only for target buttons to avoid loops
+
 const collapseSection = (e) => {
+    // to get the next to button element which is ".content"
     const content = e.target.nextElementSibling;
   
     if (e.target && e.target.matches("button.btn-collapse")) {
-        e.target.classList.toggle("active");
+        e.target.classList.toggle("collapsed");
 
         if (content.isCollapsed) {
             content.style.height = content.scrollHeight + "px";
@@ -167,21 +189,37 @@ const collapseSection = (e) => {
 
 
 window.addEventListener("load", function() {
-    // Build menu 
-    buildNavMenu();
 
-    // set absolute height of collapsable sections of content to make slow transition
+    // Build menu 
+    buildNavbar();
+
+    // Set absolute height of collapsable sections of content to make slow transition
     setHeightOfContent();
 
     // Scroll to section on link click
     navList.addEventListener("click", scrollTO);
 
+    // window.addEventListener('scroll', function() {
+    //     showNavbar(); 
+    //     setasActive();
+    //     buttonUpAppear();
+    // });
+
+    // Set sections and navbar items as active
+    window.addEventListener('scroll', setasActive);
+
+    // Hide fixed navigation bar while not scrolling and show on scroll 
+    window.addEventListener('scroll', showNavbar);
+
+    // // button only visible when the user scrolls below the fold of the page.
+    window.addEventListener('scroll', buttonUpAppear);
+
+ 
     //  Make sections collapsible
     document.addEventListener("click", collapseSection);
 
- 
-    // Set sections as active
-    window.addEventListener('scroll', setasActive);
-    window.addEventListener('scroll', appearNavMenu);
-    window.addEventListener('mouseover', noHideNavMenu);
+
+    //  scrolls to top of the page 
+    btnScrollUp.addEventListener("click", scrollUp);
 });
+

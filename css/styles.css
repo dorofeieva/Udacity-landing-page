@@ -1,15 +1,21 @@
 /*
- *
- * CSS written based on SMACSS architecture.
- * To learn more, visit: http://smacss.com/
- * 
- * For simplicity, no reset or normalize is added. 
- * To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
- *
+*
+* CSS written based on SMACSS architecture.
+* To learn more, visit: http://smacss.com/
+* 
+* For simplicity, no reset or normalize is added. 
+* To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
+*
 */
 
 
 /* ---- Base Rules ---- */
+
+/* Makes all jumps smooth */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: rgb(136,203,171);
     background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
@@ -18,6 +24,15 @@ body {
     color: #fff;
 }
 
+button {
+    cursor: pointer;
+    background-color: initial;
+    border: none;
+    float: right;
+}
+button:hover {
+    opacity: 0.9;
+}
 
 /* Typeography General*/
 h1 {
@@ -27,6 +42,9 @@ h1 {
 }
 
 @media only screen and (min-width: 35em){
+    .main__hero h1 {
+        margin-bottom: 0;
+    }
     h1 {
         font-size: 7em;
         margin: 2em 4rem 1em;
@@ -46,9 +64,7 @@ p {
 }
 
 /* ---- Layout Rules ---- */
-main {
-    margin: 10vh 1em 10vh;
-}
+
 
 .main-hero {
     min-height: 40vh;
@@ -63,6 +79,31 @@ section {
 
 /* ---- Module Rules ---- */
 
+
+/* Header Styles */
+.page__header:hover  {
+    opacity: 1 !important;
+}
+.page__header {
+    opacity: 1;
+    background: #4a7579;
+    transition: ease 1s all;
+    position: fixed;
+    top: 0;
+    padding-right: 20px;
+    border-bottom: 2px solid #FFC107;
+    box-shadow: 10px 10px 10px grey;
+    width: 100%;
+    z-index: 5;
+}
+.navbar__menu li:hover {
+    opacity: 1;
+}
+.page__header .navbar__menu li {
+    /* background: #4a7579f7; */
+    
+}
+
 /* Navigation Styles*/
 .navbar__menu ul {
     padding: 0;
@@ -71,19 +112,24 @@ section {
 }
 
 .navbar__menu li.your-active-class {
-    background: linear-gradient(2deg, rgba(192, 144, 1, 0.64) 0%, rgba(0, 0, 0, 0) 100%);
+    background:#FFC107;
+    /* background: linear-gradient(2deg, rgba(192, 144, 1, 0.84) 0%, rgba(0, 0, 0, 0) 100%); */
 } 
 .navbar__menu li:hover {
-    background: linear-gradient(2deg, rgba(192, 144, 1, 0.40) 0%, rgba(0, 0, 0, 0) 100%);
+    background:#FFC107;
+    /* background: linear-gradient(2deg, rgba(200, 200, 1, 0.80) 0%, rgba(0, 0, 0, 0) 100%); */
+    /* background: linear-gradient(2deg, rgba(200, 200, 1, 0.80) 0%, rgba(0, 0, 0, 0) 100%); */
+    /* background: linear-gradient(2deg, rgba(192, 144, 1, 0.40) 0%, rgba(0, 0, 0, 0) 100%); */
     
 } 
 .navbar__menu li {
+    transition: ease 1s all;
     display: inline-block;
     cursor: pointer;
     padding: 25px;
 }
 
-.navbar__menu .menu__link {
+/* .navbar__menu .menu__link {
     display: block;
     padding: 1em;
     font-weight: bold;
@@ -95,19 +141,7 @@ section {
     background: #333;
     color: #fff;
     transition: ease 0.3s all;
-}
-
-/* Header Styles */
-.page__header {
-    background: #4a7579;
-    position: fixed;
-    top: 0;
-    padding-right: 20px;
-    border-bottom: 2px solid #FFC107;
-    box-shadow: 10px 10px 10px grey;
-    width: 100%;
-    z-index: 5;
-}
+} */
 
 /* Footer Styles */
 .page__footer {
@@ -128,10 +162,19 @@ section {
     text-align: left;
 }
 
+@media only screen and (max-width: 35em){
+    main {
+        margin: 10vh 1em 10vh;
+    }
+}
 @media only screen and (min-width: 35em){
+
+    /* #intro .landing__container {
+        padding-top: 20px;
+    }  */
     .landing__container {
         max-width: 50em;
-        padding: 4em;
+        padding: 7em;
     }
 }
 
@@ -141,10 +184,85 @@ section:nth-of-type(even) .landing__container {
     margin-left: auto;
     text-align: right; 
 }
+.mylist {
+    line-height: 1.8;
+}
 
 /* Background Circles */
 /* Note that background circles are created with psuedo elements before and after */
 /* Circles appear to be random do to use of :nth-of-type psuedo class */
+
+header.main__hero::before {
+    /* background: #FFC107; */
+    content: '';
+    /*background: rgb(255,255,255); */
+    background: linear-gradient(0deg, rgba(255,255,255,.08) 0%, rgba(255,193,7,.1) 90%);
+    position: absolute;
+    right: 10vw;
+    top: 6em;
+    z-index: -5;
+    width: 30vh;
+    height: 30vh;
+    border-radius: 50%;
+    opacity: 1;
+    transition: ease 0.5s all;
+}
+#circle1::before, #circle2::before, #circle3::before {
+    content: '';
+    background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,193,7,.2) 100%);
+    /* background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%); */
+    position: absolute;
+    z-index: -5;
+    border-radius: 50%;
+    opacity: 1;
+    transition: ease 0.5s all;
+}
+ #circle1::before {
+    right: 35vw;
+    top: 7em;
+    width: 10vh;
+    height: 10vh;
+}
+#circle2::before {
+    right: 25vw;
+    top: 7em;
+    width: 20vh;
+    height: 20vh;
+    background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,193,7,.2) 100%);
+}
+#circle3::before {
+    right: 20vw;
+    top: 7em;
+    width: 12vh;
+    height: 12vh;
+    background: linear-gradient(0deg, rgba(255,255,255,.3) 0%, rgba(255,193,7,.3) 100%);
+}
+/* .circle::before{
+    opacity: 1;
+    animation: rotate 4s linear 0s infinite forwards;
+} */
+
+/* #circle1 {
+    opacity: 1;
+    animation: mymove 4s linear 0s infinite forwards;
+} */
+
+#circle2::before{
+    opacity: 1;
+    animation: rotate 3s linear 0s infinite ;
+}
+#circle1::before, #circle3::before {
+    opacity: 1;
+    animation: rotate 4s linear 0s infinite forwards;
+}
+
+header.main__hero::before{
+    opacity: 1;
+    animation: rotate 4s linear 0s infinite forwards;
+}
+
+
 section:nth-of-type(odd) .landing__container::before {
     content: '';
     background: rgba(255, 255, 255, 0.187);
@@ -227,51 +345,75 @@ section.your-active-class .landing__container::after {
 @keyframes rotate {
 	from {
 		transform: rotate(0deg)
-		           translate(-1em)
-		           rotate(0deg);
+        translate(-1em)
+        rotate(0deg);
 	}
 	to {
 		transform: rotate(360deg)
-		           translate(-1em) 
-		           rotate(-360deg);
+        translate(-1em) 
+        rotate(-360deg);
 	}
+}
+@keyframes mymove {
+	from {
+		left: 20vw;
+ 
+	}
+	to {
+		left: 70vw;
+	}
+}
+
+
+
+.btn-collapse {
+    float: right;
+    height: 40px;
+    outline: none;
+}
+
+section:nth-of-type(even) .landing__container .btn-collapse {
+    float: left;
+}
+
+.btn-collapse:after {
+    content: '\2191';
+    /* content: '\21E7'; */
+    /* content: '\2212'; */
+    color: white;
+    /* font-weight: bold; */
+    font-size: 4em;
+}
+
+button.collapsed:after {
+    content: "\2193";
+    /* content: "\21A7"; */
+    /* content: "\21E9"; */
+    /* content: "\002B"; */
+}
+
+section h2 {
+    display: inline;
 }
 
 .content {
     overflow: hidden;
     transition: height 0.5s ease-in-out;
     height: auto;
+    margin-top: 30px;
     /* transform-origin: top;
     transition: transform .2s ease-out;
     transform: scaleY(1);  */
 }
-.collapsed {
-    /* max-height: 0; */
-    /* overflow: hidden; */
-    /* transition: max-height 0.2s ease-out; */
-  }
 
-  .btn-collapse:after {
-    content: '\002B';
-    color: white;
-    font-weight: bold;
-    font-size: 4em;
-  }
-  section:nth-of-type(even) .landing__container .btn-collapse {
-    float: left;
-  }
-  section h2 {
-      width: 90%; 
-      display: inline;
-  }
-
-  .btn-collapse {
-    float: right;
-    height: 40px;
-    background-color: inherit;
-    border: none;
-  }
-  
-  section .active:after {
-    content: "\2212";
-  }
+.btn-scrollup:active {
+    background-color: initial;
+}
+.btn-scrollup {
+    opacity: 0;
+    visibility: hidden;
+    transition: ease 1s all;
+    position: fixed;
+    right: 60px;
+    bottom: 100px;
+}

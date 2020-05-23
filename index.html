@@ -22,17 +22,28 @@
   <main>
     <header class="main__hero">
       <h1>Landing Page </h1>
+      <div id="circle1" class="circle"></div>
+      <div id="circle2" class="circle"></div>
+      <div id="circle3" class="circle"></div>
+      <section id="intro" data-nav="Intro">
+        <div class="landing__container">
+          <h2>Hi there!</h2>
+          <p>Welcome to my landing page example</p>
+          <p>What is done:</p>
+          <ul class="mylist">   
+            <li>Dynamically create a navigation menu based on the sections of the page </li>
+            <li>Scroll to section on link click</li>
+            <li>Distinguish the section in view and set as your-active-class</li>
+            <li>Add an active state to your navigation items when a section is in the viewport</li>
+            <li>Hide fixed navigation bar while not scrolling</li>
+            <li>Make sections collapsible</li>
+            <li>Scroll to top button is added on the page and only visible when the user scrolls below the fold of    the page</li>
+            <li>Update/change the design</li>
+          </ul>
+          <div class="circle"></div>
+        </div>
+      </section>
     </header>
-    <!-- <section id="intro" data-nav="Intro">
-     
-      <div class="landing__container">
-        <h2>Hi there!</h2>
-        <p>Welcome to my landing page example</p>
-        <div class="circle"></div>
-      </div>
-     
-    
-    </section> -->
     <!-- Each Section has an ID (used for the anchor) and 
     a data attribute that will populate the li node.
     Adding more sections will automatically populate nav.
@@ -58,6 +69,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.</p>
             <p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.</p>
         
         </div>
       </div>
@@ -84,7 +96,9 @@
     </section>
   </main>
   <footer class="page__footer">
+    <button class="btn-scrollup"><img src="img/scrollup.png"></button>
     <p>&copy Udacity</p>
+    <p>Project 2: Landing page</p>
   </footer>
   <script src="js/app.js" type="text/javascript"></script>
 </body>
